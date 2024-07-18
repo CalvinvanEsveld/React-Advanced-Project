@@ -33,7 +33,7 @@ export const AddEvent = () => {
   const [categoryName, setCategoryName] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [categoryError, setCategoryError] = useState("");
-  
+
   const toast = useToast();
   const navigate = useNavigate();
 
@@ -58,7 +58,6 @@ export const AddEvent = () => {
 
     fetchCategories();
   }, [toast]);
-
 
   // Create new event
   const createEvent = async (event) => {
@@ -86,7 +85,6 @@ export const AddEvent = () => {
       return false;
     }
   };
-
 
   // Create new user
   const createUser = async (user) => {
@@ -182,7 +180,6 @@ export const AddEvent = () => {
     }
   };
 
-
   // Remove category form selected categories
   const removeCategory = (id) => {
     setSelectedCategories(selectedCategories.filter((cat) => cat.id !== id));
@@ -218,13 +215,13 @@ export const AddEvent = () => {
     <Flex minHeight="100vh" align="center" justify="center" bg="gray.100" p={4}>
       <Box
         p={4}
-        maxW="500px"
+        maxW="800px"
         width="100%"
         boxShadow="lg"
         borderRadius="md"
         bg="white"
       >
-        <Heading as="h1" mb={4} textAlign="center">
+        <Heading mb={4} textAlign="center">
           Add Event
         </Heading>
         <form onSubmit={handleSubmit}>

@@ -55,19 +55,31 @@ export const EventsPage = () => {
         <Heading mb={6} mt={2} textAlign="center" color="teal.500">
           Events
         </Heading>
-        <Flex direction={{ base: "column", lg: "row" }} justify="space-between">
-          <Button mb={4} as={RouterLink} to="/addevent/" colorScheme="teal">
+        <Flex
+          direction={{ base: "column", lg: "row" }}
+          mb={4}
+          justify="space-between"
+        >
+          <Button
+            as={RouterLink}
+            to="/addevent/"
+            colorScheme="teal"
+            borderRadius={{ base: 0, md: "md", lg: "md" }}
+          >
             Add Event
           </Button>
-          <Flex>
+          <Flex direction={{ base: "column", lg: "row" }}>
             <Input
+              borderRadius={{ base: 0, md: "md", lg: "md" }}
               placeholder="Search by title"
               value={searchTerm}
               onChange={handleSearchChange}
               mr={4}
+              mt={{ base: "2", lg: "0" }}
             />
             <Select
-              width="300px"
+              borderRadius={{ base: 0, md: "md", lg: "md" }}
+              mt={{ base: "2", lg: "0" }}
               onChange={handleCategoryChange}
               value={selectedCategory}
             >
@@ -87,7 +99,7 @@ export const EventsPage = () => {
               p={5}
               shadow="md"
               borderWidth="1px"
-              borderRadius="md"
+              borderRadius={{ base: 0, md: "md", lg: "md" }}
               bg="white"
             >
               <Flex justify="space-between" align="center" mb={4}>

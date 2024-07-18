@@ -185,7 +185,7 @@ export const EventPage = () => {
           p={5}
           shadow="md"
           borderWidth="1px"
-          borderRadius="md"
+          borderRadius={{ base: 0, md: "md", lg: "md" }}
           bg="white"
         >
           <Flex justify="space-between" align="center" mb={4}>
