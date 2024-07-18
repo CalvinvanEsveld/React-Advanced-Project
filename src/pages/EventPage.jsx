@@ -73,7 +73,7 @@ export const EventPage = () => {
     });
   };
 
-  // Handle form for updating the event
+  // Submit form to update the event
   const handleFormSubmit = async (e) => {
     e.preventDefault();
 
@@ -82,7 +82,7 @@ export const EventPage = () => {
       return;
     }
 
-    // Add new category/categories if doesn't exists
+    // Add new category/categories if they do not exists
     const newCategories = await Promise.all(
       selectedCategories.map(async (category) => {
         if (!category.id) {
@@ -148,7 +148,7 @@ export const EventPage = () => {
     setSelectedCategories(selectedCategories.filter((cat) => cat.id !== id));
   };
 
-  // Handle deleting event
+  // Deleting event
   const handleDeleteEvent = async () => {
     const response = await fetch(`http://localhost:3000/events/${event.id}`, {
       method: "DELETE",
@@ -174,7 +174,7 @@ export const EventPage = () => {
     }
   };
 
-  // Close the confirmation alert
+  // Close confirmation alert
   const onCloseDeleteAlert = () => setIsDeleteAlertOpen(false);
 
   return (

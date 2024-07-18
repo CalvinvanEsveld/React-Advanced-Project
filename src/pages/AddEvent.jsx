@@ -18,7 +18,7 @@ export const AddEvent = () => {
   const [users, setUsers] = useState([]);
   const [events, setEvents] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [name, setName] = useState("Calvin");
+  const [name, setName] = useState("Tom");
   const [userImage, setUserImage] = useState(
     "https://visualpharm.com/assets/527/Person-595b40b85ba036ed117da7ec.svg"
   );
@@ -115,7 +115,7 @@ export const AddEvent = () => {
     }
   };
 
-  // Handle form submission for creating new event
+  // Submit form to create new event
   const handleSubmit = async (event) => {
     event.preventDefault();
 
