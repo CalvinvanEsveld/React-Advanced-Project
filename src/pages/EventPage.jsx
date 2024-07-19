@@ -65,8 +65,8 @@ export const EventPage = () => {
   };
 
   // Handle input changes for the form
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setEditedEvent({
       ...editedEvent,
       [name]: value,
@@ -74,8 +74,8 @@ export const EventPage = () => {
   };
 
   // Submit form to update the event
-  const handleFormSubmit = async (e) => {
-    e.preventDefault();
+  const handleFormSubmit = async (event) => {
+    event.preventDefault();
 
     if (selectedCategories.length === 0) {
       setCategoryError("Choose at least one category");
