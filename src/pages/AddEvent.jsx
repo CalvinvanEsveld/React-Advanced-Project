@@ -18,18 +18,14 @@ export const AddEvent = () => {
   const [users, setUsers] = useState([]);
   const [events, setEvents] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [name, setName] = useState("Tom");
-  const [userImage, setUserImage] = useState(
-    "https://visualpharm.com/assets/527/Person-595b40b85ba036ed117da7ec.svg"
-  );
-  const [title, setTitle] = useState("Soccer");
-  const [description, setDescription] = useState("Let's play soccer!");
-  const [image, setImage] = useState(
-    "https://i.cbc.ca/1.7067252.1703213652!/fileImage/httpImage/1850455720.jpg"
-  );
-  const [location, setLocation] = useState("Amsterdam");
-  const [startTime, setStartTime] = useState("2024-07-16T13:05");
-  const [endTime, setEndTime] = useState("2024-07-23T13:05");
+  const [name, setName] = useState("");
+  const [userImage, setUserImage] = useState("");
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
+  const [location, setLocation] = useState("");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("");
   const [categoryName, setCategoryName] = useState("");
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [categoryError, setCategoryError] = useState("");
@@ -230,60 +226,60 @@ export const AddEvent = () => {
               type="text"
               required
               placeholder="Name"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(event) => setName(event.target.value)}
               value={name}
             />
             <Input
               type="url"
               required
               placeholder="User Image URL"
-              onChange={(e) => setUserImage(e.target.value)}
+              onChange={(event) => setUserImage(event.target.value)}
               value={userImage}
             />
             <Input
               type="text"
               required
               placeholder="Event Title"
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(event) => setTitle(event.target.value)}
               value={title}
             />
             <Textarea
               required
               placeholder="Event Description"
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(event) => setDescription(event.target.value)}
               value={description}
             />
             <Input
               type="url"
               required
               placeholder="Event Image URL"
-              onChange={(e) => setImage(e.target.value)}
+              onChange={(event) => setImage(event.target.value)}
               value={image}
             />
             <Input
               type="text"
               required
               placeholder="Event Location"
-              onChange={(e) => setLocation(e.target.value)}
+              onChange={(event) => setLocation(event.target.value)}
               value={location}
             />
             <Input
               type="datetime-local"
               required
-              onChange={(e) => setStartTime(e.target.value)}
+              onChange={(event) => setStartTime(event.target.value)}
               value={startTime}
             />
             <Input
               type="datetime-local"
               required
-              onChange={(e) => setEndTime(e.target.value)}
+              onChange={(event) => setEndTime(event.target.value)}
               value={endTime}
             />
             <Flex>
               <Input
                 type="text"
                 placeholder="Add Category"
-                onChange={(e) => setCategoryName(e.target.value)}
+                onChange={(event) => setCategoryName(event.target.value)}
                 value={categoryName}
               />
               <Button onClick={addCategoryToList} colorScheme="teal" ml={2}>

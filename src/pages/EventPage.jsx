@@ -293,7 +293,7 @@ export const EventPage = () => {
                 <Input
                   type="text"
                   placeholder="Add Category"
-                  onChange={(e) => setCategoryName(e.target.value)}
+                  onChange={(event) => setCategoryName(event.target.value)}
                   value={categoryName}
                 />
                 <Button onClick={addCategoryToList} colorScheme="teal" ml={2}>
