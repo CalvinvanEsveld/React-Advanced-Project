@@ -6,25 +6,39 @@ import {
   Text,
   Link as ChakraLink,
   Image,
-  Stack,
   Button,
   Select,
   Input,
   Center,
+  SimpleGrid,
+  Alert,
+  AlertIcon,
 } from "@chakra-ui/react";
 import { useLoaderData, Link as RouterLink } from "react-router-dom";
 
 export const loader = async () => {
-  const eventsResponse = await fetch("http://localhost:3000/events");
-  const events = await eventsResponse.json();
-  const categoriesResponse = await fetch("http://localhost:3000/categories");
-  const categories = await categoriesResponse.json();
+  try {
+    const eventsResponse = await fetch("http://localhost:3000/events");
+    if (!eventsResponse.ok) {
+      throw new Error("Failed to fetch events");
+    }
+    const events = await eventsResponse.json();
 
-  return { events, categories };
+    const categoriesResponse = await fetch("http://localhost:3000/categories");
+    if (!categoriesResponse.ok) {
+      throw new Error("Failed to fetch categories");
+    }
+    const categories = await categoriesResponse.json();
+
+    return { events, categories };
+  } catch (error) {
+    console.log("Loader error, error");
+    return { error: error.message };
+  }
 };
 
 export const EventsPage = () => {
-  const { events, categories } = useLoaderData();
+  const { events, categories, error } = useLoaderData();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -39,7 +53,7 @@ export const EventsPage = () => {
   };
 
   // Filter events based on selected category
-  const filteredEvents = events.filter((event) => {
+  const filteredEvents = events?.filter((event) => {
     const matchesCategory =
       selectedCategory === "all" ||
       event.categoryIds.includes(Number(selectedCategory));
@@ -55,6 +69,12 @@ export const EventsPage = () => {
         <Heading mb={6} mt={2} textAlign="center" color="teal.500">
           Events
         </Heading>
+        {error && (
+          <Alert status="error" mb={6}>
+            <AlertIcon />
+            {error}
+          </Alert>
+        )}
         <Flex
           direction={{ base: "column", lg: "row" }}
           mb={4}
@@ -84,7 +104,7 @@ export const EventsPage = () => {
               value={selectedCategory}
             >
               <option value="all">All Categories</option>
-              {categories.map((category) => (
+              {categories?.map((category) => (
                 <option key={category.id} value={category.id}>
                   {category.name}
                 </option>
@@ -92,21 +112,21 @@ export const EventsPage = () => {
             </Select>
           </Flex>
         </Flex>
-        <Stack spacing={8}>
-          {filteredEvents.map((event) => (
+        <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={4}>
+          {filteredEvents?.map((event) => (
             <Box
               key={event.id}
-              p={5}
+              p={3}
               shadow="md"
               borderWidth="1px"
-              borderRadius={{ base: 0, md: "md", lg: "md" }}
+              borderRadius="md"
               bg="white"
             >
-              <Flex justify="space-between" align="center" mb={4}>
+              <Flex justify="space-between" align="center" mb={2}>
                 <ChakraLink
                   as={RouterLink}
                   to={`event/${event.id}`}
-                  fontSize="2xl"
+                  fontSize="xl"
                   fontWeight="bold"
                   color="teal.500"
                 >
@@ -116,30 +136,30 @@ export const EventsPage = () => {
               <Text mb={2} fontWeight="semibold">
                 Description:
               </Text>
-              <Text mb={4}>{event.description}</Text>
+              <Text mb={2}>{event.description}</Text>
               <Image
                 src={event.image}
                 alt={event.title}
-                height="300px"
+                height="150px"
                 width="100%"
                 objectFit="cover"
                 borderRadius="md"
-                mb={4}
+                mb={2}
               />
               <Text mb={2} fontWeight="semibold">
                 Start Time:
               </Text>
-              <Text mb={4}>{new Date(event.startTime).toLocaleString()}</Text>
+              <Text mb={2}>{new Date(event.startTime).toLocaleString()}</Text>
               <Text mb={2} fontWeight="semibold">
                 End Time:
               </Text>
-              <Text mb={4}>{new Date(event.endTime).toLocaleString()}</Text>
+              <Text mb={2}>{new Date(event.endTime).toLocaleString()}</Text>
               <Text mb={2} fontWeight="semibold">
                 Categories:
               </Text>
               <Flex>
                 {event.categoryIds.map((categoryId) => {
-                  const category = categories.find(
+                  const category = categories?.find(
                     (cat) => cat.id === categoryId
                   );
                   return (
@@ -159,7 +179,7 @@ export const EventsPage = () => {
               </Flex>
             </Box>
           ))}
-        </Stack>
+        </SimpleGrid>
       </Box>
     </Center>
   );

@@ -18,12 +18,16 @@ export const AddEvent = () => {
   const [users, setUsers] = useState([]);
   const [events, setEvents] = useState([]);
   const [categories, setCategories] = useState([]);
-  const [name, setName] = useState("");
-  const [userImage, setUserImage] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
-  const [location, setLocation] = useState("");
+  const [name, setName] = useState("Calvin");
+  const [userImage, setUserImage] = useState(
+    "https://cdn3.vectorstock.com/i/1000x1000/77/87/man-person-thinking-icon-vector-10457787.jpg"
+  );
+  const [title, setTitle] = useState("Soccer");
+  const [description, setDescription] = useState("Let's play soccer!");
+  const [image, setImage] = useState(
+    "https://static01.nyt.com/images/2020/09/25/sports/25soccer-nationalWEB1/merlin_177451008_91c7b66d-3c8a-4963-896e-54280f374b6d-superJumbo.jpg"
+  );
+  const [location, setLocation] = useState("Amsterdam");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [categoryName, setCategoryName] = useState("");
